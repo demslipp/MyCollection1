@@ -216,10 +216,10 @@ public class MyLinkedList<T> implements ILinkedList<T>{
             return "[]";
         }
         String s="[";
-        MyLinkedList.Node<T> nodaGovna=first;
-        while(nonNull(nodaGovna)) {
-            s=s.concat(Objects.toString(nodaGovna.item)).concat(", ");
-            nodaGovna=nodaGovna.next;
+        MyLinkedList.Node<T> myNode=first;
+        while(nonNull(myNode)) {
+            s=s.concat(Objects.toString(myNode.item)).concat(", ");
+            myNode=myNode.next;
         }
         return s.substring(0, s.length()-2).concat("]");
     }

@@ -3,23 +3,21 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-
-public class Main{
+public class MainTest{
     private static long startTime;
     private static long endTime;
 
     public static void main(String[] args){
-
         Counter counter=new Counter();
         Random random=new Random();
-        ILinkedList<Integer> myList=new MyLinkedList();
-        List<Integer> linkedList=new LinkedList<>();
-        List<Integer> arrayList=new ArrayList<>();
+        ILinkedList<Circle> myList=new MyLinkedList();
+        List<Circle> linkedList=new LinkedList<>();
+        List<Circle> arrayList=new ArrayList<>();
         System.out.println("1");
         for (int a=0; a<10; a++){
             startTime=System.nanoTime();
             for (int i=0; i<100000; i++){
-                myList.add(i);
+                myList.add(new Circle(random.nextInt()));
             }
             endTime=System.nanoTime();
             System.out.println("My list: "+(endTime-startTime));
@@ -35,8 +33,8 @@ public class Main{
         System.out.println("2");
         for (int a=0; a<10; a++){
             startTime=System.nanoTime();
-            for (int i=100000; i<2000000; i++){
-                myList.add(i);
+            for (int i=myList.size(); i<200000; i++){
+                myList.add(new Circle(random.nextInt()));
             }
             endTime=System.nanoTime();
             System.out.println("My list: "+(endTime-startTime));
@@ -49,10 +47,15 @@ public class Main{
             endTime=System.nanoTime();
             System.out.println("Linked list: "+(endTime-startTime));
         }
+
         System.out.println("3");
         for (int a=0; a<10; a++){
+
             for (int i=myList.size(); i<200000; i++){
-                myList.add(i);
+                startTime=System.nanoTime();
+                myList.add(new Circle(random.nextInt()));
+                endTime=System.nanoTime();
+                System.out.println("My list: "+(endTime-startTime));
             }
             startTime=System.nanoTime();
             counter.insertAtTheEnd(arrayList);
@@ -94,10 +97,7 @@ public class Main{
             System.out.println("Linked list: "+(endTime-startTime));
         }
         System.out.println("6");
-        System.out.println(myList.size());
-        System.out.println(arrayList.size());
-        System.out.println(linkedList.size());
-        /*for (int a=0; a<myList.size(); a++){
+        for (int a=0; a<myList.size(); a++){
             myList.remove(a);
         }
         System.out.println(myList.size());
@@ -109,6 +109,6 @@ public class Main{
         for (int a=0; a<linkedList.size(); a++){
             linkedList.remove(a);
         }
-        System.out.println(linkedList.size());*/
+        System.out.println(linkedList.size());
     }
 }
