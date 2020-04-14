@@ -8,11 +8,11 @@ public class Main{
     private static long startTime;
     private static long endTime;
 
-    public static void main(String[] args){
+    public void forInteger(){
 
         Counter counter=new Counter();
         Random random=new Random();
-        ILinkedList<Integer> myList=new MyLinkedList();
+        ILinkedList<Integer> myList=new MyLinkedList<>();
         List<Integer> linkedList=new LinkedList<>();
         List<Integer> arrayList=new ArrayList<>();
         System.out.println("1");
@@ -23,47 +23,22 @@ public class Main{
             }
             endTime=System.nanoTime();
             System.out.println("My list: "+(endTime-startTime));
-            startTime=System.nanoTime();
-            counter.insert(arrayList);
-            endTime=System.nanoTime();
-            System.out.println("Array list: "+(endTime-startTime));
-            startTime=System.nanoTime();
-            counter.insert(linkedList);
-            endTime=System.nanoTime();
-            System.out.println("Linked list: "+(endTime-startTime));
+            counter.insert(arrayList, "Array list: ");
+            counter.insert(linkedList, "Linked list: ");
         }
         System.out.println("2");
         for (int a=0; a<10; a++){
             startTime=System.nanoTime();
-            for (int i=100000; i<2000000; i++){
+            for (int i=myList.size(); i<100000; i++){
                 myList.add(i);
             }
             endTime=System.nanoTime();
             System.out.println("My list: "+(endTime-startTime));
             startTime=System.nanoTime();
-            counter.insertAtTheEnd(arrayList);
-            endTime=System.nanoTime();
-            System.out.println("Array list: "+(endTime-startTime));
-            startTime=System.nanoTime();
-            counter.insertAtTheEnd(linkedList);
-            endTime=System.nanoTime();
-            System.out.println("Linked list: "+(endTime-startTime));
+            counter.insertAtTheEnd(arrayList, "My list: ");
+            counter.insertAtTheEnd(linkedList, "Linked list: ");
         }
         System.out.println("3");
-        for (int a=0; a<10; a++){
-            for (int i=myList.size(); i<200000; i++){
-                myList.add(i);
-            }
-            startTime=System.nanoTime();
-            counter.insertAtTheEnd(arrayList);
-            endTime=System.nanoTime();
-            System.out.println("Array list: "+(endTime-startTime));
-            startTime=System.nanoTime();
-            counter.insertAtTheEnd(linkedList);
-            endTime=System.nanoTime();
-            System.out.println("Linked list: "+(endTime-startTime));
-        }
-        System.out.println("4");
         for (int a=0; a<10; a++){
             startTime=System.nanoTime();
             myList.get(random.nextInt(myList.size()));
@@ -78,7 +53,7 @@ public class Main{
             endTime=System.nanoTime();
             System.out.println("Linked list: "+(endTime-startTime));
         }
-        System.out.println("5");
+        System.out.println("4");
         for (int a=0; a<10; a++){
             startTime=System.nanoTime();
             myList.remove(random.nextInt(myList.size()));
@@ -93,11 +68,13 @@ public class Main{
             endTime=System.nanoTime();
             System.out.println("Linked list: "+(endTime-startTime));
         }
-        System.out.println("6");
+        System.out.println("5");
         System.out.println(myList.size());
         System.out.println(arrayList.size());
         System.out.println(linkedList.size());
-        /*for (int a=0; a<myList.size(); a++){
+
+        System.out.println("6");
+        for (int a=0; a<myList.size(); a++){
             myList.remove(a);
         }
         System.out.println(myList.size());
@@ -109,6 +86,6 @@ public class Main{
         for (int a=0; a<linkedList.size(); a++){
             linkedList.remove(a);
         }
-        System.out.println(linkedList.size());*/
+        System.out.println(linkedList.size());
     }
 }
